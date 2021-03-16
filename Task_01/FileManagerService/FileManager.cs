@@ -4,6 +4,7 @@ using System.IO;
 using System.Text;
 using System.Text.Json;
 using Task_01.Model;
+using Task_01.Utils;
 
 namespace Task_01.FileManagerService
 {
@@ -48,7 +49,11 @@ namespace Task_01.FileManagerService
 
         public void WriteFileContents(string data)
         {
-            File.WriteAllText("D:\\Projects\\Learning\\Programming\\Tasks\\Task_01\\file\\BDG_Output.json", data);
+            string workingDirectory = Environment.CurrentDirectory;
+            string projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.Parent.FullName;
+
+            string dir = Path.Combine(projectDirectory, @"file\", Constants.BDG_Output);
+            File.WriteAllText(dir, data);
         }
     }
 }

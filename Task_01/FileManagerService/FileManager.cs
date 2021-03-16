@@ -52,8 +52,9 @@ namespace Task_01.FileManagerService
             string workingDirectory = Environment.CurrentDirectory;
             string projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.Parent.FullName;
 
-            string dir = Path.Combine(projectDirectory, @"file\", Constants.BDG_Output);
-            File.WriteAllText(dir, data);
+            string output = Path.Combine(projectDirectory, @"file\", Constants.BDG_Output);
+
+            File.WriteAllText(output, data);
         }
     }
 }

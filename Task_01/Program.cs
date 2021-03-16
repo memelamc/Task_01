@@ -13,7 +13,7 @@ namespace Task_01
             // file directory
             string workingDirectory = Environment.CurrentDirectory;
             string projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
-            string dir = Path.Combine(projectDirectory, Constants.filefir, Constants.BDG_Input);
+            string inputfile = Path.Combine(projectDirectory, Constants.filefir, Constants.BDG_Input);
 
             // File Service
             var serviceProvider = new ServiceCollection().AddSingleton<IFileManager, FileManager>().BuildServiceProvider();
@@ -23,15 +23,25 @@ namespace Task_01
 
             var fileManager = serviceProvider.GetService<IFileManager>();
 
+
             Console.WriteLine("Read the file from the file directory");
-            var fileContents = fileManager.ReadFileContents(dir);
+            var fileContents = fileManager.ReadFileContents(inputfile);
 
-            Console.WriteLine("Convert file json data");
-            var jsonData = fileManager.JsonConverter(fileContents);
+            // check if file exist
+            if (File.Exists(inputfile))
+            {
+                Console.WriteLine("Convert file json data");
+                var jsonData = fileManager.JsonConverter(fileContents);
 
-            Console.WriteLine("Create json file");
-            fileManager.WriteFileContents(jsonData);
+                Console.WriteLine("Create json file");
+                fileManager.WriteFileContents(jsonData);
+            }
+            else
+            {
+                Console.WriteLine("File does not exist ... ");
+            }
 
+            // exit
             Console.WriteLine("Press any key to stop -- exit ...");
             Console.ReadKey();
         }

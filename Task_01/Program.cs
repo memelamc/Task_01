@@ -12,7 +12,7 @@ namespace Task_01
         {
             // file directory
             string workingDirectory = Environment.CurrentDirectory;
-            string projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
+            string projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.Parent.FullName;
             string inputfile = Path.Combine(projectDirectory, Constants.filefir, Constants.BDG_Input);
 
             // File Service

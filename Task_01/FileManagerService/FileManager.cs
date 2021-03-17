@@ -42,7 +42,7 @@ namespace Task_01.FileManagerService
                     counter++;
                 }
                 file.Close();
-            }
+           }
 
             return users;
         }
